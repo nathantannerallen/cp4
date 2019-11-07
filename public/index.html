@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>CP3</title>
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/styles.css">
+</head>
+
+<body>
+<div id="app">
+  <h1>Stock Price App</h1>
+  <div class="inputForm">
+    <form v-on:submit.prevent="grabStockInfo">
+      <label><b>Enter a stock ticker symbol:</b><br><i>Ex: "AMZN" = Amazon; "F" = Ford; "GOOG" = Google</i></label><br><br>
+      <input id="stockInput" v-model='searchText' type="text"></input><br/><br>
+      <input id="stockSubmit" type="submit" value="Submit"></input>
+    </form>
+  </div>
+  <h2>Find Ticker Symbol Here</h2>
+    <form v-on:keyup.prevent="tickerREST">
+      <input type="text" v-model="prefix">
+    </form>
+    <ul>
+      <li v-for="item in stocks">
+        {{ item.stock }}
+      </li>
+    </ul>
+  <br><br>
+  <div class="finInfo" id="stockResults" v-if="done">
+    <h2>Current price for {{searchText}}</h2>
+    <h2>{{currentTicker.price}}</h2>
+  </div>
+
+  <br><br>
+
+  <div class="finInfo" id="forecastResults" v-if="done">
+    <ul>
+      <li><b>Revenue:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.revenue}}</li>
+      <li><b>Revenue Growth:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.revenueGrowth}}</li>
+      <li><b>COGS:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.COGS}}</li>
+      <li><b>Net Income:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.NetIncome}}</li>
+      <li><b>Net Profit Margin:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.NetProfitMargin}}</li>
+      <li><b>EPS:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.EPS}}</li>
+    </ul>
+  </div>
+
+  <br><br><br>
+
+  <div class="footer">
+    <a class="footerText" href="https://github.com/nathantannerallen/cp3" target="_blank"> Click here for Nathan's the github repository </a>
+  </div>
+</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script text="type/javascript" src="javascripts/script.js"></script>
+
+
+
+  <br><br><br>
+
+</body>
+
+</html>
